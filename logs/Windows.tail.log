@@ -32,7 +32,7 @@ Call Stack (most recent call first):
 -- Looking for pthread_create in pthread
 -- Looking for pthread_create in pthread - not found
 -- Found Threads: TRUE
--- Configuring done (136.9s)
+-- Configuring done (128.0s)
 -- Generating done (0.2s)
 CMake Warning (unused-cli):
   Manually-specified variables were not used by the project:
@@ -178,8 +178,6 @@ D:\a\shimmerstuff\shimmerstuff\build\_deps\juce-src\modules\juce_gui_basics\juce
   juce_audio_plugin_client_Unity.cpp
   juce_audio_plugin_client_VST2.cpp
   juce_audio_plugin_client_VST3.cpp
-  Building Custom Rule D:/a/shimmerstuff/shimmerstuff/CMakeLists.txt
-  reverb_test.cpp
 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include\utility(277,54): warning C4244: 'initializing': conversion from '_Ty' to '_Ty2', possible loss of data [D:\a\shimmerstuff\shimmerstuff\build\preset_test.vcxproj]
 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include\utility(277,54): warning C4244:         with [D:\a\shimmerstuff\shimmerstuff\build\preset_test.vcxproj]
 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231\include\utility(277,54): warning C4244:         [ [D:\a\shimmerstuff\shimmerstuff\build\preset_test.vcxproj]
@@ -202,6 +200,8 @@ C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.51.36231
               D:\a\shimmerstuff\shimmerstuff\src\Presets.h(19,39):
               see the first reference to 'std::pair<const char *,float>::pair' in 'ssp::reverbPresets'
   
+  Building Custom Rule D:/a/shimmerstuff/shimmerstuff/CMakeLists.txt
+  reverb_test.cpp
   preset_test.vcxproj -> D:\a\shimmerstuff\shimmerstuff\build\Release\preset_test.exe
   fx_test.vcxproj -> D:\a\shimmerstuff\shimmerstuff\build\Release\fx_test.exe
   reverb_test.vcxproj -> D:\a\shimmerstuff\shimmerstuff\build\Release\reverb_test.exe
