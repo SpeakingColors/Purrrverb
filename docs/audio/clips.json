@@ -1,0 +1,65 @@
+[
+  {
+    "before": "shimmerstuff-before-drums.mp3",
+    "after": "shimmerstuff-after-drums-hoover-lead-space.mp3",
+    "preset": "Hoover Lead Space",
+    "source": "Drum loop",
+    "description": "Drum loop through the real shimmerstuff C++ engine with the factory main preset Hoover Lead Space. The After clip is level matched to the Before clip (+1.5 dB); the tail wraps around the 4 bar loop."
+  },
+  {
+    "before": "shimmerstuff-before-chords.mp3",
+    "after": "shimmerstuff-after-chords-hoover-lead-space.mp3",
+    "preset": "Hoover Lead Space",
+    "source": "Synth chord loop",
+    "description": "Synth chord loop through the real shimmerstuff C++ engine with the factory main preset Hoover Lead Space. The After clip is level matched to the Before clip (+1.5 dB); the tail wraps around the 4 bar loop."
+  },
+  {
+    "before": "shimmerstuff-before-mix.mp3",
+    "after": "shimmerstuff-after-mix-hoover-lead-space.mp3",
+    "preset": "Hoover Lead Space",
+    "source": "Full mix loop",
+    "description": "Full mix loop through the real shimmerstuff C++ engine with the factory main preset Hoover Lead Space. The After clip is level matched to the Before clip (+1.5 dB); the tail wraps around the 4 bar loop."
+  },
+  {
+    "before": "shimmerstuff-before-drums.mp3",
+    "after": "shimmerstuff-after-drums-pumping-shimmer-pad.mp3",
+    "preset": "Pumping Shimmer Pad",
+    "source": "Drum loop",
+    "description": "Drum loop through the real shimmerstuff C++ engine with the factory main preset Pumping Shimmer Pad. The After clip is level matched to the Before clip (+1.3 dB); the tail wraps around the 4 bar loop."
+  },
+  {
+    "before": "shimmerstuff-before-chords.mp3",
+    "after": "shimmerstuff-after-chords-pumping-shimmer-pad.mp3",
+    "preset": "Pumping Shimmer Pad",
+    "source": "Synth chord loop",
+    "description": "Synth chord loop through the real shimmerstuff C++ engine with the factory main preset Pumping Shimmer Pad. The After clip is level matched to the Before clip (+1.1 dB); the tail wraps around the 4 bar loop."
+  },
+  {
+    "before": "shimmerstuff-before-mix.mp3",
+    "after": "shimmerstuff-after-mix-pumping-shimmer-pad.mp3",
+    "preset": "Pumping Shimmer Pad",
+    "source": "Full mix loop",
+    "description": "Full mix loop through the real shimmerstuff C++ engine with the factory main preset Pumping Shimmer Pad. The After clip is level matched to the Before clip (+1.3 dB); the tail wraps around the 4 bar loop."
+  },
+  {
+    "before": "shimmerstuff-before-drums.mp3",
+    "after": "shimmerstuff-after-drums-gated-snare-big-80s.mp3",
+    "preset": "Gated Snare (big 80s)",
+    "source": "Drum loop",
+    "description": "Drum loop through the real shimmerstuff C++ engine with the factory main preset Gated Snare (big 80s). The After clip is level matched to the Before clip (+1.3 dB); the tail wraps around the 4 bar loop."
+  },
+  {
+    "before": "shimmerstuff-before-chords.mp3",
+    "after": "shimmerstuff-after-chords-gated-snare-big-80s.mp3",
+    "preset": "Gated Snare (big 80s)",
+    "source": "Synth chord loop",
+    "description": "Synth chord loop through the real shimmerstuff C++ engine with the factory main preset Gated Snare (big 80s). The After clip is level matched to the Before clip (+1.3 dB); the tail wraps around the 4 bar loop."
+  },
+  {
+    "before": "shimmerstuff-before-mix.mp3",
+    "after": "shimmerstuff-after-mix-gated-snare-big-80s.mp3",
+    "preset": "Gated Snare (big 80s)",
+    "source": "Full mix loop",
+    "description": "Full mix loop through the real shimmerstuff C++ engine with the factory main preset Gated Snare (big 80s). The After clip is level matched to the Before clip (+1.3 dB); the tail wraps around the 4 bar loop."
+  }
+]
