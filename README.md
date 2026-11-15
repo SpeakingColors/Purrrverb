@@ -1,5 +1,7 @@
 # shimmerstuff
 
+<p align="center"><a href="https://ko-fi.com/studio87"><img src="https://raw.githubusercontent.com/SpeakingColors/.github/main/assets/kofi-banner.svg" alt="Support Studio 87 on Ko-fi" width="440"></a></p>
+
 Shimmer reverb, shimmer delay, input and wet FX and a routing view in one plugin, by Studio 87 (VST3 + Standalone, Linux/Windows/macOS).
 
 Reverb types: plate, hall, shimmer plate, shimmer hall, velvet. DSP is header-only (`src/Reverb.h`, `src/Fx.h`) with unit tests.
