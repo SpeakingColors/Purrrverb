@@ -1,4 +1,5 @@
 #include "PluginEditor.h"
+#include "Studio87Link.h"
 #include <catui/CatLookAndFeel.h>
 #include <complex>
 
@@ -1132,11 +1133,13 @@ void Body::showSettings()
 void Body::showAbout()
 {
     auto* w = new juce::AlertWindow("About & Support", "shimmerstuff is a free and open source plugin by Studio 87 (AGPL-3.0-or-later). It collects nothing and never connects to the internet.\n\nShimmer Reverb (plate, hall, shimmer plate, shimmer hall, velvet), Shimmer Delay (repeats that climb or fall in pitch), and FX and Routing in one plugin.\n\nIf it helps your music, a coffee on Ko-fi keeps new plugins coming.", juce::MessageBoxIconType::NoIcon, this);
-    w->addButton("Support Studio 87 on Ko-fi", 1); w->addButton("GitHub", 2); w->addButton("Close", 0, juce::KeyPress(juce::KeyPress::escapeKey));
+    w->addButton("Support Studio 87 on Ko-fi", 1); w->addButton(studio87link::buttonText(), 3); w->addButton("GitHub", 2);
+    if (auto* ub = w->getButton(studio87link::buttonText())) ub->setTooltip(studio87link::tipText()); w->addButton("Close", 0, juce::KeyPress(juce::KeyPress::escapeKey));
     w->enterModalState(true, juce::ModalCallbackFunction::create([w](int r)
     {
         if (r == 1) juce::URL("https://ko-fi.com/studio87").launchInDefaultBrowser();
         if (r == 2) juce::URL("https://github.com/SpeakingColors").launchInDefaultBrowser();
+        if (r == 3) studio87link::openUpdater("shimmerstuff");
         delete w;
     }), false);
 }
