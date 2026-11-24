@@ -849,6 +849,7 @@ Body::Body(ShimmerstuffProcessor& p)
     addAndMakeVisible(meter); peakReset.toFront(false);
     auto& a = p.apvts;
     rType.init(*this, a, "type", "Type", ShimmerstuffProcessor::typeNames(), "Nine reverbs. Plate: bright and dense. Hall: bigger and smoother. Velvet: dense and soft. Room, Chamber and Arena: small to huge spaces. Spring: boingy. Gated: cut off short. Reverse: swells into the sound. Shimmer has its own switch.");
+    rGate.init(*this, a, "gsync", "Gate sync", juce::StringArray { "Free (ms)", "1/32 note", "1/16 note", "1/8 note", "1/4 note" }, "Gated type only. Locks the gate to the tempo: Hold is the note length minus the 12 ms release, so the gate closes right on the beat division (1/8 note at 128 BPM is 234 ms in all). Free uses the Special knob in ms.");
     rMode.init(*this, a, "lexmode", "Mode", juce::StringArray { "Hall", "Random Hall", "Plate", "Chamber", "Room" }, "Hall: stable, wide, natural build-up. Random Hall: strong random movement for a big, smooth, long tail. Plate: dense and bright from the start. Chamber: very dense, quick onset. Room: small, early reflections up front. Every mode is level matched.");
     shimTog.setClickingTogglesState(true); addAndMakeVisible(shimTog); shimTog.setColour(juce::TextButton::buttonOnColourId, col::sel); shimTog.setColour(juce::TextButton::textColourOnId, col::yellow);
     shimTog.setTooltip("Turns the shimmer on or off for any reverb type, Lexicat included. Changing the type does not touch it.");
@@ -943,8 +944,8 @@ Body::Body(ShimmerstuffProcessor& p)
         mLevel.init(*this, a, "m_level", "Level", Knob::Db, col::pink, "Level of the modulation wet signal. Push it to bring the effect forward.");
     }
     modOn.setClickingTogglesState(true); addAndMakeVisible(modOn); modOn.setColour(juce::TextButton::buttonOnColourId, juce::Colour(0xff2a1020)); modOn.setColour(juce::TextButton::textColourOnId, col::pink);
-    modOn.setTooltip("Switches the modulation on or off. Same switch as the power icon on the Modulation box in FX and Routing.");
-    aModOn = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(a, "mod_on", modOn);
+    modOn.setTooltip("Switches the effect you are editing on or off. Same as its button in Active effects below: they always follow each other. Switching an effect on also switches the whole Modulation box on in the routing.");
+    modOn.onClick = [this] { const int e = juce::jlimit(0, 7, (int) proc.get("m_type")); const bool on = modOn.getToggleState(); proc.setParam(ssp::modOnId(e), on ? 1.f : 0.f); if (on && proc.get("mod_on") < .5f) proc.setParam("mod_on", 1.f); };
     { static const char* mn8[8] = { "CHORUS", "FLANGER", "PHASER", "TREMOLO", "PAN", "ROTARY", "VIBRATO", "DETUNE" };
       for (int i = 0; i < 8; ++i)
       {
@@ -952,6 +953,7 @@ Body::Body(ShimmerstuffProcessor& p)
           chip[i].setColour(juce::TextButton::buttonOnColourId, juce::Colour(0xff2a1020)); chip[i].setColour(juce::TextButton::textColourOnId, col::pink);
           chip[i].setTooltip(juce::String("Use ") + juce::String(mn8[i]).toLowerCase() + " in the chain. Use Edit effect to change its settings. Effects run in this order, one after another.");
           aChip[i] = std::make_unique<juce::AudioProcessorValueTreeState::ButtonAttachment>(a, ssp::modOnId(i), chip[i]);
+          chip[i].onClick = [this, i] { if (chip[i].getToggleState() && proc.get("mod_on") < .5f) proc.setParam("mod_on", 1.f); };
       } }
     const K iks[5] = { { "i_hp", "Input HP", Knob::Hz }, { "i_lp", "Input LP", Knob::Hz }, { "i_drive", "Drive", Knob::Db }, { "i_mix", "Sat mix", Knob::Pct }, { "i_band", "Band", Knob::Oct } };
     const char* itip[5] = { "Cuts lows before they reach the effects.", "Cuts highs before they reach the effects.", "Saturation on the signal that feeds the effects. Antialiased.", "Dry/wet of the input saturation. 0 is off.", "Moves Input HP and Input LP together, in octaves (+1 doubles both). HP and LP never cross." };
@@ -1180,6 +1182,7 @@ void Body::syncEdit()
     const int e = juce::jlimit(0, 7, (int) proc.get("m_type"));
     if (e != shownEdit) { for (int i = 0; i < 15; ++i) mk[i].rebind(ssp::modId(e, i)); shownEdit = e; }
     for (int i = 0; i < 15; ++i) mk[i].setAlpha(((kModUse[i] >> e) & 1) ? 1.f : 0.35f);
+    modOn.setToggleState(proc.get(ssp::modOnId(e)) > .5f, juce::dontSendNotification);
 }
 
 void Body::layoutTab()
@@ -1201,7 +1204,7 @@ void Body::layoutTab()
     for (auto& k : dukn) k.setVisible(false);
     for (auto& k : mk) k.setVisible(false);
     mMix.setVisible(false); mLevel.setVisible(false);
-    for (auto* c : { &rType, &rMode, &lay, &dMode, &dSrc, &dRatio, &dType, &mType }) c->setVisible(false);
+    for (auto* c : { &rType, &rGate, &rMode, &lay, &dMode, &dSrc, &dRatio, &dType, &mType }) c->setVisible(false);
     shimTog.setVisible(false); holdTog.setVisible(false); modOn.setVisible(false);
     for (auto& b : chip) b.setVisible(false);
     for (auto& b : onBtn) b.setVisible(false);
@@ -1219,7 +1222,7 @@ void Body::layoutTab()
         panels.push_back({ { L + 540, p2, 532, rowH }, 3, "TONE AND MIX", "what reaches the output" });
         panels.push_back({ { L, p3, LW, rowH }, 4, "LEXICAT", "our second reverb engine" });
         place(revOn, L + LW - 78, p1 + 6, 66, 24);
-        place(rType, L + 12, p1 + 44, 132, 52); knobRow(rk, 5, L + 160, p1 + 32, 100); place(rk[23], L + 160 + 500, p1 + 32, 100, 76); place(rk[25], L + 160 + 600, p1 + 32, 100, 76);
+        place(rType, L + 12, p1 + 44, 132, 52); knobRow(rk, 5, L + 160, p1 + 32, 100); place(rk[23], L + 160 + 500, p1 + 32, 100, 76); place(rk[25], L + 160 + 600, p1 + 32, 100, 76); place(rGate, L + 160 + 710, p1 + 44, 132, 52);
         place(shimTog, L + 532 - 130, p2 + 6, 118, 24);
         knobRow(rk + 5, 4, L + 16, p2 + 32, 100); place(rk[26], L + 16 + 400, p2 + 32, 100, 76); { Knob* tk[6] = { &rk[9], &rk[10], &rk[11], &rk[24], &rk[12], &rk[22] }; for (int i = 0; i < 6; ++i) place(*tk[i], L + 540 + 4 + i * 87, p2 + 32, 87, 76); }
         place(rMode, L + 12, p3 + 44, 132, 52); knobRow(rk + 13, 9, L + 160, p3 + 32, 88); place(rk[27], L + 160 + 9 * 88, p3 + 32, 88, 76);
@@ -1313,6 +1316,7 @@ void Body::tickFrame()
             rk[0].s.onValueChange(); rk[23].s.onValueChange();
             { const int ty = (int) proc.get("type"); rk[23].setAlpha(ty >= 6 ? 1.f : 0.35f);
               rk[23].name.setText(juce::String(ty == 7 ? "Hold" : ty == 8 ? "Length" : ty == 6 ? "Boing" : "Special").toUpperCase(), juce::dontSendNotification); }
+            { const bool gt = (int) proc.get("type") == 7, gsy = gt && (int) proc.get("gsync") > 0; rGate.setAlpha(gt ? 1.f : 0.35f); if (gsy) rk[23].setAlpha(0.35f); }
             const bool lx = proc.get("lexmix") > 0.001f; for (int i = 14; i < 22; ++i) rk[i].setAlpha(lx ? 1.f : 0.35f); rMode.setAlpha(lx ? 1.f : 0.35f);
             shimTog.setAlpha(1.f);
         }

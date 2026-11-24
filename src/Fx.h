@@ -153,7 +153,7 @@ struct ModParams {
     float drive = 0.2f;      // Rotary: preamp drive 0..1
     float minHz = 0.8f, maxHz = 6.5f;   // Rotary speed limits
     float doppler = 0.5f;    // Rotary: pitch wobble 0..1
-    float shift = 12.0f;     // Detune: cents (0..50)
+    float shift = 12.0f;     // Detune: cents (0..100)
     float mix = 1.0f;        // 1 for the wet only types, lower mixes the dry back in
 };
 constexpr int kModFx = 8;   // the effects run in this order: Chorus, Flanger, Phaser, Tremolo, Pan, Rotary, Vibrato, Detune; any of them can be on

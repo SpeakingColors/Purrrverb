@@ -59,3 +59,11 @@ Labels: **VERIFIED** (read in a primary document), **COMMUNITY** (forum or insid
 - Gated Hold shows ms (40..500), Reverse Length shows ms (100..1000). Decay view axis switches to 24 s for tails above 9 s.
 - Shimmer Amount, Amount 2 and Lexicat Blend are now called Mix, Mix 2, Mix.
 - New presets: Gated Snare Chain (FX), Gated Snare (big 80s) (main). Gate hold math: 1/8 note at 128 BPM is 234 ms.
+
+## Tone filters, limiter, Detune, Levels, gated sync, Modulation tab (November 2026)
+- Wet HP and Wet LP (and the input pair) run 20 Hz to 20 kHz, never cross, and a Band knob moves both together in octaves.
+- Master limiter next to the meter: In (-12 to +24 dB) and Out (-12 to 0 dB), linked gain limiter, 0.3 ms attack, 120 ms release.
+- Detune is supersaw style: 1 to 7 voices spread evenly over plus and minus Shift cents (0 to 100), panned by Spread.
+- Per section Level knobs in dB: Space, Shimmer, Lexicat; Tone and Mix keeps the whole reverb Level.
+- Gate sync (Gated type only): Hold = note length minus the fixed 12 ms release, from the host BPM (1/8 note at 128 BPM is 234 ms in all). Free keeps the Special knob in ms.
+- Modulation tab: the ON button follows the effect being edited and the Active effects chips; switching an effect on also switches the Modulation box on. A fuzz test runs every effect at random settings and corners.

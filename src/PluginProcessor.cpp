@@ -81,6 +81,7 @@ APVTS::ParameterLayout ShimmerstuffProcessor::layout()
     p.push_back(std::make_unique<juce::AudioParameterBool>(juce::ParameterID{ "shim_on", 1 }, "Shimmer on", true));
     p.push_back(std::make_unique<juce::AudioParameterChoice>(juce::ParameterID{ "dtype", 1 }, "Delay type", juce::StringArray { "Studio", "Tape", "Pong", "Modulated", "Reverse" }, 0));
     p.push_back(std::make_unique<juce::AudioParameterChoice>(juce::ParameterID{ "m_type", 1 }, "Modulation: effect being edited", juce::StringArray(kModNames, 8), 0));
+    p.push_back(std::make_unique<juce::AudioParameterChoice>(juce::ParameterID{ "gsync", 1 }, "Gate sync", juce::StringArray { "Free (ms)", "1/32 note", "1/16 note", "1/8 note", "1/4 note" }, 0));
     p.push_back(std::make_unique<juce::AudioParameterChoice>(juce::ParameterID{ "lexmode", 1 }, "Lexicat mode", juce::StringArray { "Hall", "Random Hall", "Plate", "Chamber", "Room" }, 0));
     for (const auto& f : kFloats)
     {
@@ -271,6 +272,11 @@ void ShimmerstuffProcessor::processBlock(juce::AudioBuffer<float>& buf, juce::Mi
     const bool byp = get("byp") > .5f;
     eng.revOn = get("rev_on") > .5f; eng.delOn = get("del_on") > .5f; eng.ifxOn = get("ifx_on") > .5f; eng.wfxOn = get("wfx_on") > .5f;
     auto& rs = eng.rs; rs.type = (wm::engine::ReverbType) juce::jlimit(0, 8, (int) get("type")); rs.p.special = get("rspec");
+    {   // gated reverb hold locked to the tempo: hold = note length minus the fixed 12 ms release (1/8 at 128 BPM: 234 ms in all)
+        double bpm0 = 120.0; if (auto* ph = getPlayHead()) if (auto pos = ph->getPosition()) if (auto t = pos->getBpm()) bpm0 = *t;
+        const int gs = juce::jlimit(0, 4, (int) get("gsync"));
+        if (rs.type == wm::engine::ReverbType::Gated && gs > 0) { static const float kNote[5] = { 0.f, 0.125f, 0.25f, 0.5f, 1.f };
+            const float holdMs = kNote[gs] * 60000.f / (float) juce::jmax(30.0, bpm0) - 12.f; rs.p.special = juce::jlimit(0.f, 1.f, (holdMs * 0.001f - 0.04f) / 0.46f); } }
     eng.modOn = get("mod_on") > .5f;
     rs.p.decay = get("decay"); rs.p.dampHz = get("damp"); rs.p.preDelayMs = get("predelay"); rs.p.size = get("size"); rs.p.modDepth = get("mod"); rs.p.color = get("color");
     rs.p.bass = get("bass"); rs.p.xoverHz = get("xover"); rs.p.shape = get("shape"); rs.p.spread = get("spread"); rs.p.diffusion = get("diff");

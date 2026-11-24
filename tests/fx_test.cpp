@@ -45,6 +45,15 @@ int main() {
             for (int i = 0; i < 96000; ++i) { const float x = 0.5f * std::sin(0.03f * float(i)) + 0.2f * std::sin(0.31f * float(i)); m.process(x, x * 0.8f, p); fin = fin && std::isfinite(m.oL) && std::isfinite(m.oR); pk = std::max(pk, (double)std::max(std::fabs(m.oL), std::fabs(m.oR))); if (i > 48000) { e += m.oL * m.oL; d += (m.oL - x) * (m.oL - x); } }
             CHECK(fin && pk < 3.0 && e > 1.0 && d > 1.0); std::printf("  %s: peak %.2f, differs from dry %.0f %%\n", nm[t], pk, 100.0 * d / e);
         }
+        // fuzz: every effect at random settings across the full knob ranges (and the corners) stays finite and bounded
+        {   std::mt19937 rg(11); std::uniform_real_distribution<float> u(0.f, 1.f); int runs = 0; bool allOk = true; double worst = 0;
+            for (int t = 0; t < 8; ++t) for (int r = 0; r < 24; ++r) {
+                ModFx m; m.prepare(48000); ModParams p; p.type = t; const bool corner = r < 4; auto pick = [&](float lo, float hi) { return corner ? (r & 1 ? hi : lo) : lo + (hi - lo) * u(rg); };
+                p.speed = std::exp(pick(std::log(0.05f), std::log(20.f))); p.depth = pick(0, 1); p.voices = 1 + int(pick(0, 6.99f)); p.regen = pick(-0.9f, 0.9f); p.preDelayMs = pick(0, 20); p.diffusion = pick(0, 1);
+                p.waveform = int(pick(0, 2.99f)); p.phase = pick(0, 1); p.stages = int(pick(0, 2.99f)); p.spread = pick(0, 1); p.drive = pick(0, 1); p.minHz = pick(0.1f, 5); p.maxHz = pick(0.1f, 12); p.doppler = pick(0, 1); p.shift = pick(0, 100); p.mix = pick(0, 1);
+                for (int i = 0; i < 48000; ++i) { const float x = 0.6f * std::sin(0.05f * float(i)) + 0.3f * (u(rg) - 0.5f); m.process(x, 0.7f * x, p); allOk = allOk && std::isfinite(m.oL) && std::isfinite(m.oR); worst = std::max(worst, (double) std::max(std::fabs(m.oL), std::fabs(m.oR))); }
+                ++runs; }
+            CHECK(allOk && worst < 6.0); std::printf("  fuzz: %d random settings finite, worst peak %.2f\n", runs, worst); }
         // supersaw detune: 7 voices, stable, level close to the dry, wider than the mono input
         { ModFx m; m.prepare(48000); ModParams p; p.type = 7; p.voices = 7; p.shift = 30; p.spread = 0.9f; p.preDelayMs = 0.f; double ei = 0, eo = 0, sl = 0, sr = 0, sx = 0; bool fin = true;
           for (int i = 0; i < 96000; ++i) { const float x = 0.5f * std::sin(0.03f * float(i)) + 0.2f * std::sin(0.31f * float(i)); m.process(x, x, p); fin = fin && std::isfinite(m.oL) && std::isfinite(m.oR);
