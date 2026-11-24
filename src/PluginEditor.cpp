@@ -1143,8 +1143,8 @@ void Body::showAbout()
     {
         if (r == 1) juce::URL("https://ko-fi.com/studio87").launchInDefaultBrowser();
         if (r == 2) juce::URL("https://github.com/SpeakingColors").launchInDefaultBrowser();
-        if (r == 3) studio87link::openUpdater("shimmerstuff");
-        if (r == 4) studio87link::openGitHub("shimmerstuff");
+        if (r == 3) studio87link::openUpdater("purrrverb");
+        if (r == 4) studio87link::openGitHub("purrrverb");
         delete w;
     }), false);
 }

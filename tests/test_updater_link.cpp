@@ -10,17 +10,17 @@ static int fails = 0;
 
 int main()
 {
-    const std::string product = "shimmerstuff";
+    const std::string product = "purrrverb";
     bool charsOk = ! product.empty() && product.size() <= 100;
     for (char ch : product) charsOk = charsOk && (std::isalnum ((unsigned char) ch) || ch == '.' || ch == '-' || ch == '_');
     CHECK (charsOk, "product id (the catalog repository name) uses only letters, digits, dot, dash and underscore");
-    CHECK (studio87link::updaterUrl (product) == "studio87://open?product=shimmerstuff", "link is studio87://open?product=<repo name>");
+    CHECK (studio87link::updaterUrl (product) == "studio87://open?product=purrrverb", "link is studio87://open?product=<repo name>");
     CHECK (studio87link::updaterUrl ("") == "studio87://open", "no product gives the plain open link");
     CHECK (studio87link::updaterUrl (product).find ("://") == 8, "scheme is studio87");
     CHECK (studio87link::updaterUrl (product).find ("http") == std::string::npos, "link is not a web address (no network call)");
     CHECK (std::string (studio87link::fallbackMessage()) == "Install Studio 87 Gear Updater from github.com/SpeakingColors/gearupdater/releases", "fallback message is the contract text");
     CHECK (std::string (studio87link::tipText()).find ("Nothing is sent anywhere.") != std::string::npos, "hover bubble says nothing is sent");
-    CHECK (studio87link::githubUrl (product) == "https://github.com/SpeakingColors/shimmerstuff", "GitHub button opens the repo home page");
+    CHECK (studio87link::githubUrl (product) == "https://github.com/SpeakingColors/purrrverb", "GitHub button opens the repo home page");
     CHECK (studio87link::githubUrl (product).find ("/releases") == std::string::npos, "GitHub button is not the releases page");
     CHECK (std::string (studio87link::githubTipText()) == "Opens this plugin's home page on GitHub in your browser. Nothing is sent by the plugin.", "GitHub hover bubble text");
     CHECK (std::string (studio87link::githubButtonText()) == "Open on GitHub", "GitHub button text");

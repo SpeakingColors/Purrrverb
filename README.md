@@ -12,7 +12,7 @@ Status: pre-release 0.1.0. Every knob is automatable. The routing graph is saved
 
 <p align="center"><img src="docs/screenshot.png" alt="Purrrverb editor" width="900"><br><sub>Screenshot of the real plugin window (Linux standalone build).</sub></p>
 
-**Manual:** [PDF, opens in the browser](https://github.com/SpeakingColors/shimmerstuff/blob/main/docs/shimmerstuff-manual.pdf)
+**Manual:** [PDF, opens in the browser](https://github.com/SpeakingColors/purrrverb/blob/main/docs/shimmerstuff-manual.pdf)
 
 ## Support
 
