@@ -32,8 +32,8 @@ Call Stack (most recent call first):
 -- Looking for pthread_create in pthread
 -- Looking for pthread_create in pthread - not found
 -- Found Threads: TRUE
--- Configuring done (152.1s)
--- Generating done (0.2s)
+-- Configuring done (101.4s)
+-- Generating done (0.1s)
 CMake Warning (unused-cli):
   Manually-specified variables were not used by the project:
 
@@ -46,8 +46,8 @@ MSBuild version 18.12.2-1.26514.2+04f6ca984 for .NET Framework
   Checking File Globs
   1>Checking Build System
   Generating Shimmerstuff_artefacts/JuceLibraryCode/Shimmerstuff_resources.rc
-  Building Custom Rule D:/a/Purrrverb/Purrrverb/CMakeLists.txt
   Building VST3 manifest helper for Shimmerstuff
+  Building Custom Rule D:/a/Purrrverb/Purrrverb/CMakeLists.txt
   Shimmerstuff_rc_lib.vcxproj -> D:\a\Purrrverb\Purrrverb\build\Shimmerstuff_rc_lib.dir\Release\Shimmerstuff_rc_lib.lib
   -- The CXX compiler identification is MSVC 19.52.37029.0
   -- Detecting CXX compiler ABI info
@@ -55,7 +55,7 @@ MSBuild version 18.12.2-1.26514.2+04f6ca984 for .NET Framework
   -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.52.37025/bin/Hostx64/x64/cl.exe - skipped
   -- Detecting CXX compile features
   -- Detecting CXX compile features - done
-  -- Configuring done (1.9s)
+  -- Configuring done (1.3s)
   -- Generating done (0.0s)
   -- Build files have been written to: D:/a/Purrrverb/Purrrverb/build/vst3_helpers/Shimmerstuff
   MSBuild version 18.12.2-1.26514.2+04f6ca984 for .NET Framework
@@ -170,14 +170,6 @@ D:\a\Purrrverb\Purrrverb\build\_deps\juce-src\modules\juce_gui_basics\juce_gui_b
   Building Custom Rule D:/a/Purrrverb/Purrrverb/CMakeLists.txt
   Building Custom Rule D:/a/Purrrverb/Purrrverb/CMakeLists.txt
   fx_test.cpp
-  juce_audio_plugin_client_AAX.cpp
-  juce_audio_plugin_client_AAX_utils.cpp
-  juce_audio_plugin_client_ARA.cpp
-  juce_audio_plugin_client_LV2.cpp
-  juce_audio_plugin_client_Standalone.cpp
-  juce_audio_plugin_client_Unity.cpp
-  juce_audio_plugin_client_VST2.cpp
-  juce_audio_plugin_client_VST3.cpp
   Building Custom Rule D:/a/Purrrverb/Purrrverb/CMakeLists.txt
   reverb_test.cpp
 C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.52.37025\include\utility(277,54): warning C4244: 'initializing': conversion from '_Ty' to '_Ty2', possible loss of data [D:\a\Purrrverb\Purrrverb\build\preset_test.vcxproj]
@@ -202,6 +194,14 @@ C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Tools\MSVC\14.52.37025
               D:\a\Purrrverb\Purrrverb\src\Presets.h(19,39):
               see the first reference to 'std::pair<const char *,float>::pair' in 'ssp::reverbPresets'
   
+  juce_audio_plugin_client_AAX.cpp
+  juce_audio_plugin_client_AAX_utils.cpp
+  juce_audio_plugin_client_ARA.cpp
+  juce_audio_plugin_client_LV2.cpp
+  juce_audio_plugin_client_Standalone.cpp
+  juce_audio_plugin_client_Unity.cpp
+  juce_audio_plugin_client_VST2.cpp
+  juce_audio_plugin_client_VST3.cpp
   preset_test.vcxproj -> D:\a\Purrrverb\Purrrverb\build\Release\preset_test.exe
   fx_test.vcxproj -> D:\a\Purrrverb\Purrrverb\build\Release\fx_test.exe
   reverb_test.vcxproj -> D:\a\Purrrverb\Purrrverb\build\Release\reverb_test.exe
