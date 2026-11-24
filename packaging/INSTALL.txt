@@ -21,7 +21,7 @@ Linux, DAW installed as a Flatpak (for example Bitwig, Reaper or Ardour from Fla
   2. Install the file from the linux folder:
        flatpak install --user linux/Shimmerstuff-flatpak-25.08.flatpak
   3. Restart the DAW and rescan plugins.
-  Remove: flatpak uninstall --user org.freedesktop.LinuxAudio.Plugins.Shimmerstuff   (removes the plugin completely)
+  Remove: flatpak uninstall --user org.freedesktop.LinuxAudio.Plugins.Purrrverb   (removes the plugin completely)
 
 Linux, DAW installed natively
   Extract linux/Shimmerstuff-linux-vst3.tar.gz into ~/.vst3  (create the folder if needed), then rescan plugins.
