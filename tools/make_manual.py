@@ -14,8 +14,8 @@ h1 = ParagraphStyle("h1", fontName="Helvetica-Bold", fontSize=22, spaceAfter=4, 
 sub = ParagraphStyle("sub", fontName="Helvetica", fontSize=10, textColor=colors.HexColor("#777777"), spaceAfter=14)
 h2 = ParagraphStyle("h2", fontName="Helvetica-Bold", fontSize=14, spaceBefore=12, spaceAfter=4, textColor=colors.HexColor("#4F009A"))
 body = ParagraphStyle("b", fontName="Helvetica", fontSize=10.5, leading=14.5, spaceAfter=6)
-doc = SimpleDocTemplate(out, pagesize=A4, leftMargin=20 * mm, rightMargin=20 * mm, topMargin=18 * mm, bottomMargin=18 * mm, title="shimmerstuff manual", author="Studio 87")
-story = [Paragraph("shimmerstuff", h1), Paragraph("Manual. Free and open source by Studio 87. Support: ko-fi.com/studio87", sub)]
+doc = SimpleDocTemplate(out, pagesize=A4, leftMargin=20 * mm, rightMargin=20 * mm, topMargin=18 * mm, bottomMargin=18 * mm, title="Purrrverb manual", author="Studio 87")
+story = [Paragraph("Purrrverb", h1), Paragraph("Manual. Free and open source by Studio 87. Support: ko-fi.com/studio87", sub)]
 sections, cur = [], None
 for line in open(txt, encoding="utf-8").read().splitlines():
     if line.startswith("# "): cur = [line[2:].strip(), []]; sections.append(cur)

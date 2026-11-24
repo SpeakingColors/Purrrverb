@@ -1,6 +1,6 @@
 -- Compiled into "Uninstall PurrOne.app" by the release workflow (osacompile). Installed to /Applications by the .pkg.
 -- Removes everything the installer put on the Mac. Saved presets are kept unless you choose to delete them.
-set productName to "shimmerstuff"
+set productName to "Purrrverb"
 set presetsDir to (POSIX path of (path to application support folder from user domain)) & "Studio 87/" & productName
 set oldPresetsDir to (POSIX path of (path to application support folder from user domain)) & "SpeakingColors/" & productName
 display dialog "Remove " & productName & " from this Mac?" & return & return & "This deletes the plugin, the standalone app, the manual and this uninstaller." buttons {"Cancel", "Remove"} default button "Cancel" with icon caution

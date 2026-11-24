@@ -15,8 +15,8 @@ permissions:
   contents: read
 env:
   TAGIN: ${{ inputs.tag }}
-  NAME: Shimmerstuff
-  PRODUCT: "shimmerstuff"
+  NAME: Purrrverb
+  PRODUCT: "Purrrverb"
   CPP: docs/manual.txt
 jobs:
   manual:

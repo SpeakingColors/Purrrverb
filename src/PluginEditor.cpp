@@ -814,7 +814,7 @@ namespace
 {
 const char* kTabTitle[4] = { "REVERB", "DELAY", "MODULATION", "FX & ROUTING" };
 const char* kTabSub[4] = { "VST3 and Standalone", "VST3 and Standalone", "chorus, phaser, rotary...", "input and wet processing" };
-const char* kHeadTitle[4] = { "SHIMMER REVERB", "SHIMMER DELAY", "MODULATION", "FX AND ROUTING" };
+const char* kHeadTitle[4] = { "PURRRVERB", "PURRRVERB DELAY", "MODULATION", "FX AND ROUTING" };
 const char* kSubName[4][2] = { { "DECAY", "TONE" }, { "ECHOES", "TONE" }, { "MOVEMENT", "TONE" }, { "ROUTING", "TONE" } };
 const char* kDirName[4] = { "reverb", "delay", "modulation", "fx" };
 const std::vector<const char*>& keysOf(int t) { return t == 0 ? ssp::reverbKeys() : t == 1 ? ssp::delayKeys() : t == 2 ? ssp::modKeys() : ssp::fxKeys(); }
@@ -998,7 +998,7 @@ Body::Body(ShimmerstuffProcessor& p)
     setTab(0);
 }
 
-juce::File Body::presetRoot() const { return juce::File::getSpecialLocation(juce::File::userApplicationDataDirectory).getChildFile("Studio 87").getChildFile("shimmerstuff").getChildFile("presets"); }
+juce::File Body::presetRoot() const { const auto base = juce::File::getSpecialLocation(juce::File::userApplicationDataDirectory).getChildFile("Studio 87"); { const auto old = base.getChildFile("shimmerstuff"), now = base.getChildFile("Purrrverb"); if (old.isDirectory() && !now.exists()) old.copyDirectoryTo(now); } return base.getChildFile("Purrrverb").getChildFile("presets"); }
 juce::File Body::tabDir(int t) const { return presetRoot().getChildFile(kDirName[t]); }
 
 std::vector<float> Body::snapshot(int t) const
@@ -1134,7 +1134,7 @@ void Body::showSettings()
 }
 void Body::showAbout()
 {
-    auto* w = new juce::AlertWindow("About & Support", "shimmerstuff is a free and open source plugin by Studio 87 (AGPL-3.0-or-later). It collects nothing and never connects to the internet.\n\nShimmer Reverb (plate, hall, shimmer plate, shimmer hall, velvet), Shimmer Delay (repeats that climb or fall in pitch), and FX and Routing in one plugin.\n\nIf it helps your music, a coffee on Ko-fi keeps new plugins coming.", juce::MessageBoxIconType::NoIcon, this);
+    auto* w = new juce::AlertWindow("About & Support", "Purrrverb is a free and open source plugin by Studio 87 (AGPL-3.0-or-later). It collects nothing and never connects to the internet.\n\nPurrrverb (nine reverb types, shimmer, Lexicat), Purrrverb Delay (repeats that climb or fall in pitch), Modulation, and FX and Routing in one plugin.\n\nIf it helps your music, a coffee on Ko-fi keeps new plugins coming.", juce::MessageBoxIconType::NoIcon, this);
     w->addButton("Support Studio 87 on Ko-fi", 1); w->addButton(studio87link::buttonText(), 3); w->addButton(studio87link::githubButtonText(), 4); w->addButton("GitHub", 2);
     if (auto* ub = w->getButton(studio87link::buttonText())) ub->setTooltip(studio87link::tipText());
     if (auto* gb = w->getButton(studio87link::githubButtonText())) gb->setTooltip(studio87link::githubTipText());
@@ -1151,7 +1151,7 @@ void Body::showAbout()
 void Body::showGuide()
 {
     auto* w = new juce::AlertWindow("Quick guide",
-        "Shimmer Reverb, Shimmer Delay and FX & Routing are three views of one plugin. The routing you choose stays active whichever tab is open; the ON button on the Reverb and Delay tabs is the same switch as the power icon in the routing diagram.\n\n"
+        "Purrrverb, Purrrverb Delay and FX & Routing are three views of one plugin. The routing you choose stays active whichever tab is open; the ON button on the Reverb and Delay tabs is the same switch as the power icon in the routing diagram.\n\n"
         "Decay: drag the yellow dot sideways for the decay and up or down for the size. Cyan: pre-delay. Blue: damping. Orange: shimmer. Pink: mix.\n"
         "Tone: the live spectrum with draggable filter lines.\n"
         "Modulation: switch on any of the eight effects (they run one after another), pick one in Edit effect to change its settings.\n"
@@ -1357,7 +1357,7 @@ void Body::paint(juce::Graphics& g)
     }
     g.setColour(col::line); g.drawHorizontalLine(884, 14.f, (float) IW - 14.f);
     g.setColour(col::ink); g.setFont(font(12.f, true, 0.16f)); g.drawText("STUDIO 87", 14, 892, 80, 18, juce::Justification::left);
-    g.setColour(col::dim); g.setFont(font(12.f, false, 0.16f)); g.drawText("SHIMMERSTUFF", 98, 892, 300, 18, juce::Justification::left);
+    g.setColour(col::dim); g.setFont(font(12.f, false, 0.16f)); g.drawText("PURRRVERB", 98, 892, 300, 18, juce::Justification::left);
     g.drawText("WINDOW " + juce::String(winPct) + " %", IW - 214, 892, 200, 18, juce::Justification::right);
 }
 

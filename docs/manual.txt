@@ -14,15 +14,23 @@ It is free and open source, made by Studio 87. It collects nothing and works ful
 
 # Tabs are views
 
-Shimmer Reverb, Shimmer Delay and FX and Routing are three views of the same plugin, made to fine tune each part. The routing and the on or off switches you chose stay active whichever tab is open. The ON button on the Reverb and Delay tabs is the same switch as the power icon on the box in the routing view (and the same host parameter).
+Purrrverb, Purrrverb Delay and FX and Routing are three views of the same plugin, made to fine tune each part. The routing and the on or off switches you chose stay active whichever tab is open. The ON button on the Reverb and Delay tabs is the same switch as the power icon on the box in the routing view (and the same host parameter).
 
 # Reverb
 
-Five types: plate, hall, shimmer plate, shimmer hall and velvet. Decay is the tail length, Damping darkens it, Pre-delay delays its start, Size is the room size, Modulation adds movement. Shimmer pitch and Shimmer set how much pitch shifted tail is fed back (a second voice is available). Wet HP and Wet LP shape the tail only. The decay view shows the energy decay of the real reverb, measured live.
+Nine types: plate, hall, velvet, room, chamber, arena, spring, gated and reverse. Shimmer works on every type, and Lexicat is a second reverb engine you can blend in with its Mix. Decay is the tail length in seconds, Damping darkens it, Pre-delay (ms) delays its start, Size is the room size, Modulation adds movement. Shimmer Pitch and Mix set how much pitch shifted tail is fed back (a second voice is available). Wet HP and Wet LP shape the tail only, over the full 20 Hz to 20 kHz range, and never cross; Band moves both together in octaves. Each section (Space, Shimmer, Tone and Mix, Lexicat) has its own Level in dB. The decay view shows the energy decay of the real reverb, measured live.
+
+Gated type: Special is the hold time in ms. Gate sync locks it to the host tempo: Hold is the note length minus the fixed 12 ms release (1/8 note at 128 BPM is 234 ms in all). Presets "Gated Snare (big 80s)" and "Gated Snare Chain" are starting points.
+
+A master limiter sits next to the level meter (In and Out knobs, on/off button) and works on the final output.
 
 # Delay
 
 Time, Feedback, Shift (semitones per repeat), Shimmer (how much of the repeat is shifted), Damping and Mix. Drag the first bar in the echo view for the time, any bar up or down for the feedback.
+
+# Modulation
+
+Eight effects (chorus, flanger, phaser, tremolo, pan, rotary, vibrato, detune) can run together in the order shown. Edit effect picks which one the knobs change; its ON button and the Active effects buttons always follow each other. Detune is supersaw style: up to 7 voices spread over plus and minus Shift cents (0 to 100), panned by Spread.
 
 # FX and routing
 
@@ -40,7 +48,7 @@ Each tab has its own preset list (factory and your own) for just that part, and 
 
 # Interface tour
 
-The numbered picture below is the plugin window (Shimmer Reverb view). The list names every control.
+The numbered picture below is the plugin window (Purrrverb view). The list names every control.
 
 # Support
 

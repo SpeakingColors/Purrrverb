@@ -57,14 +57,14 @@
  },
  {
   "n": 9,
-  "name": "Shimmer Reverb",
+  "name": "Purrrverb",
   "tip": "The reverb view: plate, hall, shimmer plate, shimmer hall and velvet.",
   "x": 180,
   "y": 97
  },
  {
   "n": 10,
-  "name": "Shimmer Delay",
+  "name": "Purrrverb Delay",
   "tip": "The delay view: echoes that climb (or fall) in pitch with every repeat. The routing stays as you set it on every tab.",
   "x": 457,
   "y": 97

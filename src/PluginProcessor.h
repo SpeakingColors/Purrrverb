@@ -4,7 +4,7 @@
 #include "Presets.h"
 #include <array>
 
-// shimmerstuff: shimmer reverb, shimmer delay, input FX, wet FX and a free routing graph in one plugin.
+// Purrrverb (repo shimmerstuff): shimmer reverb, shimmer delay, input FX, wet FX and a free routing graph in one plugin.
 class ShimmerstuffProcessor : public juce::AudioProcessor
 {
 public:
@@ -15,7 +15,7 @@ public:
     void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
     juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override { return true; }
-    const juce::String getName() const override { return "shimmerstuff"; }
+    const juce::String getName() const override { return "Purrrverb"; }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 12.0; }

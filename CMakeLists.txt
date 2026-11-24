@@ -13,7 +13,9 @@ juce_add_plugin(Shimmerstuff
     PLUGIN_MANUFACTURER_CODE Spco
     PLUGIN_CODE Shst
     FORMATS VST3 Standalone
-    PRODUCT_NAME "shimmerstuff"
+    PRODUCT_NAME "Purrrverb"
+    ICON_BIG "${CMAKE_CURRENT_SOURCE_DIR}/packaging/icon/purrrverb-512.png"
+    ICON_SMALL "${CMAKE_CURRENT_SOURCE_DIR}/packaging/icon/purrrverb-256.png"
     IS_SYNTH FALSE NEEDS_MIDI_INPUT FALSE
     VST3_CATEGORIES Fx Reverb
     COPY_PLUGIN_AFTER_BUILD FALSE)
