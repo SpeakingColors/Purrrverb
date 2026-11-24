@@ -4,7 +4,6 @@
 ; unless you answer Yes when it asks. A silent uninstall (/SILENT, /VERYSILENT) always keeps them.
 [Setup]
 SetupIconFile=icon\purrrverb.ico
-UninstallDisplayIcon={app}\{#Product}.exe
 AppName={#Product}
 AppVersion={#Version}
 AppPublisher=Studio 87
